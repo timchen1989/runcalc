@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Calc</title>
+    <style type="text/css">
+        body{
+            margin:0px auto;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            font-size: 17px;
+            font-family: "Microsoft JhengHei",Arial,sans-serif;
+        }
+        .head{
+            background-color: blueviolet;
+            text-align: center;
+            color:white;
+            font-size: 18px;
+            font-family: "acumin-pro-condensed","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+        }
+        .nav{
+            display: flex; 
+            justify-content: center;
+            border:1px solid black;
+            background-color: #313538;
+        }
+        .nav > span{
+            padding: 0px 20px;
+            color: #828282;
+        }
+        .nav > span:hover{
+            cursor: pointer;
+            color: white;
+        }
+        .nav > span + span {
+            border-left: 1px solid #828282;
+            
+        }
+        .head_column{
+            
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            height: 450px;
+            margin: 10px auto;
+            max-width: 400px;
+            padding: 0px 10px;
+            border:1px solid black;
+            border-radius: 10px;
+        }
+        .bottom{
+            background-color: #1c1c1c !important;
+            padding-top: 30px;
+            padding-bottom: 70px;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1.75em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+   <h1>跑步計算機</h1>
+</div>
+<div class="nav">
+    <span>用速度推算長距離時間</span>
+    <span>用距離及秒速來推算幾分速</span>
+    <span>用半馬或全馬跑多久來推算幾分速</span>
+</div>
+<div class="main">
+    <div class="result" style="height: 100px;">
+        <div id="result"></div>
+    </div>
+    <div class="stock_number">
+        <div class="label">股票名稱或股票代號</div>
+        <input class="input" autofocus maxlength="30" autocomplete="no" placeholder="輸入您想買的股票代號或名稱" type="text" id="stockNumber"></input>
+    </div>
+    <div class="stock_number">
+        <div class="label">購買金額</div>
+        <input type="text" maxlength="30" autocomplete="no" placeholder="輸入購買金額" id="money"></input>
+    </div>
+    <button onclick="queryStock();">查詢</button>
+</div>
+<div class="bottom">
+    <div>
+        <a target="_blank" rel="nofollow" href="https://docs.google.com/forms/d/e/1FAIpQLSeWE30Igh-j0MNnII2xYfokkax7SNfpHzn9zXSkHs2y2PpV8g/viewform?usp=sf_link">說說你的想法</a>
+    </div>
+</div>
+</body>
+</html>
