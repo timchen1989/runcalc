@@ -14,29 +14,57 @@
             font-size: 17px;
             font-family: "Microsoft JhengHei",Arial,sans-serif;
         }
+        .warp{
+            display: block;
+            margin: 0 auto;
+            max-width: 40em;
+            zoom: 1;
+        }
+        .banner{
+
+        }
         .head{
-            background-color: blueviolet;
             text-align: center;
-            color:white;
+            color: #1990c6;
             font-size: 18px;
             font-family: "acumin-pro-condensed","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+            margin: 0 auto;
+            max-width: 640px;
+            /* 1em = 16px */
+            padding: 1em 1em;
+            /* padding:1.5em  0; */
         }
         .nav{
             display: flex; 
             justify-content: center;
-            border:1px solid black;
-            background-color: #313538;
+            height: 50px;
+            text-align: center;
+            align-items: center;
+            /* border:1px solid black; */
+            /* background-color: #313538; */
+            background: #fafafa;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        @media (max-width: 599px){
+            .nav{
+                height: 70px;
+            }
         }
         .nav > span{
-            padding: 0px 20px;
+            padding: 0px 15px;
+            /* letter-spacing: px; */
+            /* text-indent: 24px; */
+            font-size: 16px;
             color: #828282;
         }
         .nav > span:hover{
             cursor: pointer;
-            color: white;
+            font-weight: bold;
+            color: black;
         }
         .nav > span + span {
-            border-left: 1px solid #828282;
+            border-left: 2px solid #828282;
             
         }
         .head_column{
@@ -50,18 +78,58 @@
             height: 450px;
             margin: 10px auto;
             max-width: 400px;
-            padding: 0px 10px;
-            border:1px solid black;
+            padding: 1em 10px;
+            /* border:1px solid black; */
             border-radius: 10px;
+            
+        }
+        .main > button {
+            background-color: #1990c6;
+            color: white;
+            cursor: pointer;
+            border: 1px transparent solid;
+            border-radius: 5px;
+            font-weight: 500;
+            padding: 1.4em 1.7em;
+            text-align: center;
+            -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+        }
+        .main > button:hover{
+            background-color: #136f99;
+            color: white;
+        }
+        .main > .stock_number{
+            margin: 20px 0px
+        }
+        .main > .stock_number > .label{
+            font-size: 12px;
+            color: rgb(0, 0, 0);
+        }
+        .main > .stock_number > input{
+            height: 35px;
+            width: 90%;
+            border-radius: 8px;
+            font-size: 14px;
+            /* margin: 10px 0px; */
+            border: 1px solid rgb(207, 214, 228);
+            transition: 0.3s ease;
+            outline: none;
+            /* padding: 0px 32px 0px 16px; */
         }
         .bottom{
-            background-color: #1c1c1c !important;
-            padding-top: 30px;
-            padding-bottom: 70px;
             font-size: 1.2em;
             font-weight: bold;
             line-height: 1.75em;
             text-align: center;
+            padding: 1em 0;
+            border-top: 1px solid #e6e6e6;
+        }
+        .bottom > a {
+            color: #1990c6;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration:underline;
         }
     </style>
 </head>
@@ -71,13 +139,10 @@
 </div>
 <div class="nav">
     <span>用速度推算長距離時間</span>
-    <span>用距離及秒速來推算幾分速</span>
-    <span>用半馬或全馬跑多久來推算幾分速</span>
+    <span>用距離及秒速推算速度</span>
+    <span>用半馬(全馬)時間推算速度</span>
 </div>
 <div class="main">
-    <div class="result" style="height: 100px;">
-        <div id="result"></div>
-    </div>
     <div class="stock_number">
         <div class="label">股票名稱或股票代號</div>
         <input class="input" autofocus maxlength="30" autocomplete="no" placeholder="輸入您想買的股票代號或名稱" type="text" id="stockNumber"></input>
@@ -89,9 +154,7 @@
     <button onclick="queryStock();">查詢</button>
 </div>
 <div class="bottom">
-    <div>
-        <a target="_blank" rel="nofollow" href="https://docs.google.com/forms/d/e/1FAIpQLSeWE30Igh-j0MNnII2xYfokkax7SNfpHzn9zXSkHs2y2PpV8g/viewform?usp=sf_link">說說你的想法</a>
-    </div>
+    <a target="_blank" rel="nofollow" href="https://docs.google.com/forms/d/e/1FAIpQLSeWE30Igh-j0MNnII2xYfokkax7SNfpHzn9zXSkHs2y2PpV8g/viewform?usp=sf_link">說說你的想法</a>
 </div>
 </body>
 </html>
