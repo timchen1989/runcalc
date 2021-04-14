@@ -12,7 +12,8 @@
             height: 100%;
             padding: 0px;
             font-size: 17px;
-            font-family: "Microsoft JhengHei",Arial,sans-serif;
+            
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         }
         .warp{
             display: block;
@@ -131,7 +132,96 @@
         a:hover{
             text-decoration:underline;
         }
+        .field_label{
+            text-align: left;
+            /* margin: 0.5em 0; */
+
+            font-size: 0.8571428571em;
+            font-weight: normal;
+            position: absolute;
+            top: 0;
+            width: 90%;
+            margin-top: 0.4285714286em;
+            margin-left: 1px;
+            padding: 0 0.9166666667em;
+            z-index: 1;
+            -webkit-user-select: none;
+            -webkit-box-sizing: border-box;
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .field_input{
+            -webkit-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+            background-color: white;
+            color: #333333;
+            border: 1px transparent solid;
+            border-color: #d9d9d9;
+            border-radius: 5px;
+            padding: 0.9285714286em 0.7857142857em;
+            width: 90%;
+            
+            display: block;
+            background-clip: padding-box;
+            padding-top: 2em;
+            padding-bottom: 0.3571428571em;
+        }
+        .field_input:focus{
+            outline: none;
+            border-color: #1990c6;
+            -webkit-box-shadow: 0 0 0 1px #1990c6;
+            box-shadow: 0 0 0 1px #1990c6;
+        }
+        .field_input-wrapper{
+            position: relative;
+        }
+        
     </style>
+    <script>
+        let distanceList = [100, 200, 300, 400, 500, 600, 1000, 1200, 1500, 1600];
+        let minList = [1, 2, 3, 4, 5];
+        window.addEventListener("load", init);
+        function init(){
+            console.log("window load !!");
+            loadDistance();
+            loadTime();
+        }
+        function loadTime(){
+            loadMin();
+            loadSec();
+        }
+        function loadMin(){
+            let min = document.querySelector("#min");
+            console.log(min);
+            for(let i=0; i<10; i++){
+                let option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                min.appendChild(option);
+            }
+        }
+        function loadSec(){
+            let sec = document.querySelector("#sec");
+            for(let i=0; i<60; i++){
+                let option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                sec.appendChild(option);
+            }
+        }
+        function loadDistance(){
+            let distanceSelect = document.querySelector("#distance");
+            distanceList.forEach(distance => {
+                let option = document.createElement("option");
+                option.value = distance;
+                option.text = distance;
+                distanceSelect.appendChild(option);
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="head">
@@ -150,6 +240,22 @@
     <div class="stock_number">
         <div class="label">購買金額</div>
         <input type="text" maxlength="30" autocomplete="no" placeholder="輸入購買金額" id="money"></input>
+    </div>
+    <div>
+        <div class="field_input-wrapper">
+            <label class="field_label">距離(公尺)</label>
+            <select id="distance" class="field_input"></select>
+        </div>
+    </div>
+    <div>
+        <div>
+            <select id="min" class="field_input"></select>
+        </div>
+    </div>
+    <div>
+        <div>
+            <select id="sec" class="field_input"></select>
+        </div>
     </div>
     <button onclick="queryStock();">查詢</button>
 </div>
