@@ -132,6 +132,9 @@
         a:hover{
             text-decoration:underline;
         }
+        .field_input-wrapper{
+            position: relative;
+        }
         .field_label{
             text-align: left;
             /* margin: 0.5em 0; */
@@ -175,8 +178,19 @@
             -webkit-box-shadow: 0 0 0 1px #1990c6;
             box-shadow: 0 0 0 1px #1990c6;
         }
-        .field_input-wrapper{
-            position: relative;
+        .field_input-wrapper > .field_caret{
+            border-left: 1px rgba(179,179,179,0.5) solid;
+        }
+        .field_caret{
+            display: block;
+            width: 2.1428571429em;
+            height: 43%;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translate(0%, -50%);
+            transform: translate(0%, -50%);
         }
         
     </style>
@@ -245,6 +259,7 @@
         <div class="field_input-wrapper">
             <label class="field_label">距離(公尺)</label>
             <select id="distance" class="field_input"></select>
+            <div class="field_caret" ></div>
         </div>
     </div>
     <div>
