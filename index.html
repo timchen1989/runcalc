@@ -12,7 +12,6 @@
             height: 100%;
             padding: 0px;
             font-size: 17px;
-            
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         }
         .warp{
@@ -20,9 +19,6 @@
             margin: 0 auto;
             max-width: 40em;
             zoom: 1;
-        }
-        .banner{
-
         }
         .head{
             text-align: center;
@@ -33,7 +29,6 @@
             max-width: 640px;
             /* 1em = 16px */
             padding: 1em 1em;
-            /* padding:1.5em  0; */
         }
         .nav{
             display: flex; 
@@ -41,8 +36,6 @@
             height: 50px;
             text-align: center;
             align-items: center;
-            /* border:1px solid black; */
-            /* background-color: #313538; */
             background: #fafafa;
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
@@ -54,8 +47,6 @@
         }
         .nav > span{
             padding: 0px 15px;
-            /* letter-spacing: px; */
-            /* text-indent: 24px; */
             font-size: 16px;
             color: #828282;
         }
@@ -66,10 +57,6 @@
         }
         .nav > span + span {
             border-left: 2px solid #828282;
-            
-        }
-        .head_column{
-            
         }
         h1{
             margin: 0;
@@ -78,44 +65,38 @@
         .main{
             height: 450px;
             margin: 10px auto;
-            max-width: 400px;
+            max-width: 450px;
             padding: 1em 10px;
-            /* border:1px solid black; */
-            border-radius: 10px;
-            
+            border-radius: 10px; 
         }
-        .main > button {
+        @media (max-width: 599px){
+            .main{
+                width: 100%;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        }
+        button {
+            padding: 1.7em 3.5em 1.7em 3.5em;
             background-color: #1990c6;
             color: white;
             cursor: pointer;
             border: 1px transparent solid;
             border-radius: 5px;
-            font-weight: 500;
-            padding: 1.4em 1.7em;
+            font-weight: 800;
             text-align: center;
             -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #136f99;
+            color: white;
         }
         .main > button:hover{
             background-color: #136f99;
             color: white;
-        }
-        .main > .stock_number{
-            margin: 20px 0px
-        }
-        .main > .stock_number > .label{
-            font-size: 12px;
-            color: rgb(0, 0, 0);
-        }
-        .main > .stock_number > input{
-            height: 35px;
-            width: 90%;
-            border-radius: 8px;
-            font-size: 14px;
-            /* margin: 10px 0px; */
-            border: 1px solid rgb(207, 214, 228);
-            transition: 0.3s ease;
-            outline: none;
-            /* padding: 0px 32px 0px 16px; */
         }
         .bottom{
             font-size: 1.2em;
@@ -134,27 +115,37 @@
         }
         .field_input-wrapper{
             position: relative;
+            margin-bottom: 20px;
+        }
+        .floating-labels {
+            margin-top: 0.45em;
+            font-size: 0.8571428571em;
         }
         .field_label{
             text-align: left;
-            /* margin: 0.5em 0; */
-
             font-size: 0.8571428571em;
             font-weight: normal;
             position: absolute;
             top: 0;
-            width: 90%;
-            margin-top: 0.4285714286em;
-            margin-left: 1px;
-            padding: 0 0.9166666667em;
+            width: 100%;
+            margin-top: .3285714286em;
+            padding: 0 0.85em;
             z-index: 1;
             -webkit-user-select: none;
-            -webkit-box-sizing: border-box;
-            transition: all 0.2s ease-out;
+            user-select: none;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
             pointer-events: none;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            opacity: 0;
+        }
+        .field_label_show{
+            opacity: 1;
         }
         .field_input{
             -webkit-transition: all 0.2s ease-out;
@@ -164,17 +155,29 @@
             border: 1px transparent solid;
             border-color: #d9d9d9;
             border-radius: 5px;
-            padding: 0.9285714286em 0.7857142857em;
-            width: 90%;
-            
+            width: 100%;
+            padding: .9285714286em .7857142857em;
             display: block;
             background-clip: padding-box;
-            padding-top: 2em;
-            padding-bottom: 0.3571428571em;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             outline: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            word-break: normal;
+        }
+        .field_input_move{
+            padding-top: 1.8em;
+            padding-bottom: .3571428571em;
+        }
+        .field_input::-webkit-input-placeholder{
+            color: #737373;
+            font-size: 16px;
+            text-transform: none;
+            vertical-align: middle;
+            line-height: normal;
         }
         .field_input:focus{
             outline: none;
@@ -182,21 +185,15 @@
             -webkit-box-shadow: 0 0 0 1px #1990c6;
             box-shadow: 0 0 0 1px #1990c6;
         }
-        .field_input-wrapper > .field_caret{
-            border-left: 1px rgba(179,179,179,0.5) solid;
-        }
-        .field_caret{
-            display: block;
-            width: 2.1428571429em;
-            height: 43%;
-            pointer-events: none;
+        .triangle {
             position: absolute;
+            height: 43%;
             top: 50%;
-            right: 0;
-            -webkit-transform: translate(0%, -50%);
-            transform: translate(0%, -50%);
+            right: 12px;
+            border-top: 5px solid #ccc;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
         }
-        
     </style>
     <script>
         let distanceList = [100, 200, 300, 400, 500, 600, 1000, 1200, 1500, 1600];
@@ -205,7 +202,7 @@
         function init(){
             console.log("window load !!");
             loadDistance();
-            loadTime();
+            // loadTime();
         }
         function loadTime(){
             loadMin();
@@ -236,8 +233,46 @@
                 let option = document.createElement("option");
                 option.value = distance;
                 option.text = distance;
+                if(distance == "400"){
+                    option.selected="selected";
+                }
                 distanceSelect.appendChild(option);
             });
+        }
+        let responseText;
+        function calc(calcType){
+            let xhr = new XMLHttpRequest();
+            let location;
+            if(calcType === "calc2"){
+                let distance = document.querySelector("#distance");
+                let distanceValue = distance.value;
+                let secondInput = document.querySelector("#secondInput");
+                let secondValue = secondInput.value;
+                location = "http://127.0.0.1:8090/calctwo?distanceValue="+distanceValue+"&secondValue="+secondValue;
+                console.log(distance, distanceValue, secondInput, secondValue);
+            }
+            // let result = document.querySelector("result");
+            console.log(location);
+            xhr.open("get", location);
+            //註冊事件處理，為了取得後端的結果所以要註冊load事件，代表網路連線完成後要做的事
+            xhr.addEventListener("load", ()=>{
+                responseText = xhr.responseText;
+                console.log(responseText);
+            });
+            xhr.send();
+        }
+        function change(event){
+            let secondLabel = document.querySelector("#secondLabel");
+            let secondInput = document.querySelector("#secondInput");
+            console.log(event, event.target, event.target.value);
+            let value = event.target.value;
+            if(value != ""){
+                secondLabel.classList.add("field_label_show");
+                secondInput.classList.add("field_input_move");
+            } else {
+                secondLabel.classList.remove("field_label_show");
+                secondInput.classList.remove("field_input_move");
+            }
         }
     </script>
 </head>
@@ -251,32 +286,20 @@
     <span>用半馬(全馬)時間推算速度</span>
 </div>
 <div class="main">
-    <div class="stock_number">
-        <div class="label">股票名稱或股票代號</div>
-        <input class="input" autofocus maxlength="30" autocomplete="no" placeholder="輸入您想買的股票代號或名稱" type="text" id="stockNumber"></input>
-    </div>
-    <div class="stock_number">
-        <div class="label">購買金額</div>
-        <input type="text" maxlength="30" autocomplete="no" placeholder="輸入購買金額" id="money"></input>
-    </div>
     <div>
         <div class="field_input-wrapper">
-            <label class="field_label">距離(公尺)</label>
+            <label class="field_label floating-labels">距離(公尺)</label>
             <select id="distance" class="field_input"></select>
-            <div class="field_caret" ></div>
+            <div class="triangle"></div>
         </div>
     </div>
-    <div>
-        <div>
-            <select id="min" class="field_input"></select>
-        </div>
+    <div class="field_input-wrapper">
+        <label id="secondLabel" class="field_label" style="color: #737373;">秒數</label>
+        <input id="secondInput" class="field_input" placeholder="秒數" oninput="change(event);"></input>
     </div>
-    <div>
-        <div>
-            <select id="sec" class="field_input"></select>
-        </div>
+    <div style="display: flex; justify-content: center; margin: 2em;">
+        <button onclick="calc('calc2');">計算</button>
     </div>
-    <button onclick="queryStock();">查詢</button>
 </div>
 <div class="bottom">
     <a target="_blank" rel="nofollow" href="https://docs.google.com/forms/d/e/1FAIpQLSeWE30Igh-j0MNnII2xYfokkax7SNfpHzn9zXSkHs2y2PpV8g/viewform?usp=sf_link">說說你的想法</a>
