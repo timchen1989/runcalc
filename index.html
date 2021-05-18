@@ -123,7 +123,6 @@
         }
         .field_label{
             text-align: left;
-            /*  */
             font-size: 0.8571428571em;
             font-weight: normal;
             position: absolute;
@@ -157,7 +156,7 @@
             border-color: #d9d9d9;
             border-radius: 5px;
             width: 100%;
-            padding: .9285714286em .7857142857em;
+            padding: .9285714286em .8857142857em;
             display: block;
             background-clip: padding-box;
             -webkit-appearance: none;
@@ -170,7 +169,7 @@
             word-break: normal;
         }
         .field_input_move{
-            padding-top: 1.8em;
+            padding-top: 1.85em;
             padding-bottom: .3571428571em;
         }
         .field_input::-webkit-input-placeholder{
@@ -194,6 +193,15 @@
             border-top: 5px solid #ccc;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
+        }
+        @font-face {
+            font-family:'digital-clock-font';
+            /* font-family: "Bank Gothic", "Futura", "Arial"; */
+            src: url('digital-7.regular.ttf');
+        }
+        .result{
+            font-size: 44px;
+            font-family: 'digital-clock-font', sans-serif;
         }
     </style>
     <script>
@@ -250,17 +258,20 @@
                 let secondInput = document.querySelector("#secondInput");
                 let secondValue = secondInput.value;
                 location = "http://127.0.0.1:8090/calctwo?distanceValue="+distanceValue+"&secondValue="+secondValue;
-                console.log(distance, distanceValue, secondInput, secondValue);
+            
             }
-            // let result = document.querySelector("result");
-            console.log(location);
             xhr.open("get", location);
             //註冊事件處理，為了取得後端的結果所以要註冊load事件，代表網路連線完成後要做的事
             xhr.addEventListener("load", ()=>{
                 responseText = xhr.responseText;
                 console.log(responseText);
+                processResult(responseText);
             });
             xhr.send();
+        }
+        function processResult(responseText){
+            let result = document.querySelector("#result");
+            result.innerHTML=responseText;
         }
         function change(event){
             let secondLabel = document.querySelector("#secondLabel");
@@ -287,10 +298,13 @@
     <span>用半馬(全馬)時間推算速度</span>
 </div>
 <div class="main">
+    <div id="result" class="result">
+
+    </div>
     <div>
         <div class="field_input-wrapper">
-            <label class="field_label floating-labels">距離(公尺)</label>
-            <select id="distance" class="field_input"></select>
+            <label class="field_label" style="color: #737373; opacity: 1;">距離(公尺)</label>
+            <select id="distance" class="field_input field_input_move"></select>
             <div class="triangle"></div>
         </div>
     </div>
