@@ -196,12 +196,31 @@
         }
         @font-face {
             font-family:'digital-clock-font';
-            /* font-family: "Bank Gothic", "Futura", "Arial"; */
             src: url('digital-7.regular.ttf');
         }
         .result{
+            width: 100%;
+            text-align: center;
             font-size: 44px;
             font-family: 'digital-clock-font', sans-serif;
+            background-color: black;
+            color: #F5E62E;
+            margin-bottom: 10px;
+        }
+        .invalid_input{
+            border-color: #ff6d6d;
+            -webkit-box-shadow: 0 0 0 1px #ff6d6d;
+            box-shadow: 0 0 0 1px #ff6d6d;
+        }
+        .field_input_error{
+            display: none;
+            position: absolute;
+            color: #ff6d6d;
+            line-height: 1.3em;
+            margin: 3px 4px;
+        }
+        .field_input_error_show{
+            display: block;
         }
     </style>
     <script>
@@ -248,23 +267,54 @@
                 distanceSelect.appendChild(option);
             });
         }
+        function isInValidate(distanceValue, secondValue){
+            let result = false;
+            if(!secondValue){
+                clearResult();
+                let secondInput = document.querySelector("#secondInput");
+                result = true;
+                //input field border change to red
+                secondInput.classList.add("invalid_input");
+                //error msg
+                let secondErrMsg = document.querySelector("#error-for-second");
+                let errorLabel = "請輸入秒數";
+                if(secondErrMsg == null){
+                    secondErrMsg = createErrorMsg("error-for-second", errorLabel);
+                    secondInput.parentElement.appendChild(secondErrMsg);
+                } else {
+                    secondErrMsg.innerHTML = errorLabel;
+                }
+                secondErrMsg.classList.add("field_input_error_show");
+                return result;
+            }
+            return result;
+        }
+        function createErrorMsg(id, showMessage){
+            errorMsg = document.createElement("p");
+            errorMsg.id = id;
+            errorMsg.classList.add("field_input_error");
+            errorMsg.innerHTML = showMessage;
+            return errorMsg;
+        }
         let responseText;
         function calc(calcType){
             let xhr = new XMLHttpRequest();
             let location;
+            let distance = document.querySelector("#distance");
+            let distanceValue = distance.value.trim();
+            let secondInput = document.querySelector("#secondInput");
+            let secondValue = secondInput.value.trim();
+            if(isInValidate(distanceValue, secondValue)){
+                return;
+            }
             if(calcType === "calc2"){
-                let distance = document.querySelector("#distance");
-                let distanceValue = distance.value;
-                let secondInput = document.querySelector("#secondInput");
-                let secondValue = secondInput.value;
                 location = "http://127.0.0.1:8090/calctwo?distanceValue="+distanceValue+"&secondValue="+secondValue;
-            
             }
             xhr.open("get", location);
             //註冊事件處理，為了取得後端的結果所以要註冊load事件，代表網路連線完成後要做的事
             xhr.addEventListener("load", ()=>{
                 responseText = xhr.responseText;
-                console.log(responseText);
+                // console.log(responseText);
                 processResult(responseText);
             });
             xhr.send();
@@ -272,11 +322,24 @@
         function processResult(responseText){
             let result = document.querySelector("#result");
             result.innerHTML=responseText;
+            // document.querySelector("#result").classList.remove("field_label_show");
         }
-        function change(event){
+        function clearResult(){
+            document.querySelector("#result").innerHTML="";
+        }
+        function userInputSecond(value){
+            let secondInput = document.querySelector("#secondInput");
+            let secondErrMsg = document.querySelector("#error-for-second");
+            if(value != "" && secondErrMsg != null){
+                secondErrMsg.classList.remove("field_input_error_show");
+                secondInput.classList.remove("invalid_input");
+            }
+            checkIsFloatLabel(value);
+        }
+        function checkIsFloatLabel(event){
             let secondLabel = document.querySelector("#secondLabel");
             let secondInput = document.querySelector("#secondInput");
-            console.log(event, event.target, event.target.value);
+            // console.log(event, event.target, event.target.value);
             let value = event.target.value;
             if(value != ""){
                 secondLabel.classList.add("field_label_show");
@@ -298,9 +361,7 @@
     <span>用半馬(全馬)時間推算速度</span>
 </div>
 <div class="main">
-    <div id="result" class="result">
-
-    </div>
+    速度:<div id="result" class="result" ></div>
     <div>
         <div class="field_input-wrapper">
             <label class="field_label" style="color: #737373; opacity: 1;">距離(公尺)</label>
@@ -310,7 +371,7 @@
     </div>
     <div class="field_input-wrapper">
         <label id="secondLabel" class="field_label" style="color: #737373;">秒數</label>
-        <input id="secondInput" class="field_input" placeholder="秒數" oninput="change(event);"></input>
+        <input id="secondInput" class="field_input" placeholder="秒數" oninput="userInputSecond(event);"></input>
     </div>
     <div style="display: flex; justify-content: center; margin: 2em;">
         <button onclick="calc('calc2');">計算</button>
